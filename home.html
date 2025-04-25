@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加载中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .top {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+            background: rgb(89,7,176);
+            background: linear-gradient(135deg, rgb(36, 3, 71) 0%, rgb(49, 1, 75) 35%, rgb(73, 0, 68) 100%);
+        }
+        .loading {
+            filter: drop-shadow(0 0 10px rgb(89,7,176));
+            animation: loading infinite 1.5s linear;
+        }
+        @keyframes loading {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        p {
+            color: #fff;
+            font-size: 24px;
+        }
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="top" id="top">
+        <div class="content">
+            <img src="bin/loading.png" class="loading">
+            <p>加载中...</p>
+        </div>
+    </div>
+    <video src="bin/rickroll.mp4" id="video" muted></video>
+    <script>
+        const Video = document.getElementById('video');
+        const Top = document.getElementById('top');
+
+        Video.addEventListener('canplaythrough', () => {
+            Top.style.display = 'none';
+            Video.muted = false;
+            Video.play();
+        })
+    </script>
+</body>
+</html>
